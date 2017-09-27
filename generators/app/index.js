@@ -1,0 +1,278 @@
+'use strict';
+const Generator = require('yeoman-generator');
+const chalk = require('chalk');
+const yosay = require('yosay');
+const _s = require('underscore.string');
+const mkdirp = require('mkdirp');
+
+module.exports = class extends Generator {
+  prompting() {
+    // Have Yeoman greet the user.
+    this.log(yosay('Yeoman Coworks.be builder \n Welcome to the Drupal Cowfe theme generator! \n For issue call the doctor'));
+    this.log(
+      chalk.green(
+        'With this you can create the scaffolding for your own Drupal theme. \n'
+      )
+    );
+
+    // Define module list
+    const moduleList = ['Slick', 'Singularity'];
+
+    // Here, we add in extra prompts and settings from our base themes.
+    const baseThemeList = [
+      {name: 'No Base Theme', value: null},
+      {name: 'stable (D8)', value: 'stable'},
+      {name: 'classy (D8)', value: 'classy'},
+      {name: 'garland (d7)', value: 'garland'},
+      {name: 'bartik', value: 'bartik'},
+      {name: 'engines', value: 'engines'},
+      {name: 'seven', value: 'seven'},
+      {name: 'stark', value: 'stark'}
+    ];
+
+    // List of drupal version
+    const drupalVersionList = [
+      {name: 'Drupal 8', value: 8},
+      {name: 'Drupal 7', value: 7}
+    ];
+
+    const prompts = [
+      {
+        type: 'list',
+        name: 'drupalV',
+        message: 'Which Drupal version you want to use?',
+        choices: drupalVersionList
+      },
+      {
+        type: 'string',
+        name: 'projectName',
+        message: 'What\'s your theme\'s name?' + chalk.red(' (Required)'),
+        validate: function (input) {
+          if (input === '') {
+            return 'Please enter your theme\'s name';
+          }
+          return true;
+        },
+        default: 'cowfe'
+      },
+      {
+        type: 'list',
+        name: 'baseTheme',
+        message: 'Which base theme you want to use?',
+        choices: baseThemeList
+      },
+      {
+        type: 'checkbox',
+        name: 'moduleList',
+        message: 'Which node module\'s you need to install?',
+        choices: moduleList
+      },
+      {
+        type: 'confirm',
+        name: 'nodeInstall',
+        message: 'Would you like to run npm install after theme setup?',
+        default: false
+      }
+    ];
+
+    return this.prompt(prompts).then(props => {
+      // To access props later use this.props.someAnswer;
+      this.props = props;
+
+      this.props.npm = [];
+      this.props.npm.slick = props.moduleList.indexOf('Slick') > -1;
+      this.props.npm.singularity = props.moduleList.indexOf('Singularity') > -1;
+    });
+  }
+
+  default() {
+    this.props.scss = 'assets/scss';
+    this.props.svgDir = 'assets/svg';
+    this.props.imgDir = 'assets/images';
+    this.props.jsDir = 'assets/js';
+    this.props.fontsDir = 'fonts';
+    this.props.templateDir = 'templates';
+    this.props.favIcoDir = 'favicon';
+    this.props.projectSlug = _s.underscored(this.props.projectName);
+  }
+
+  writing() {
+
+    // Create project name directory
+    mkdirp.sync(this.props.projectName);
+
+    // Set project name to be destionation root folder
+    this.destinationRoot(this.props.projectName);
+
+    // Make all required directories what we will need.
+    mkdirp.sync(this.props.scss);
+    mkdirp.sync(this.props.jsDir);
+    mkdirp.sync(this.props.fontsDir);
+    mkdirp.sync(this.props.templateDir);
+    mkdirp.sync(this.props.svgDir);
+    mkdirp.sync(this.props.imgDir);
+    mkdirp.sync(this.props.favIcoDir);
+
+    if (this.props.drupalV === 8) {
+      // Drupal 8 theme build
+
+      this.fs.copyTpl(
+        this.templatePath('drupal8/_theme.info.yml'),
+        this.destinationPath(this.props.projectName + '.info.yml'),
+        {projectName: this.props.projectName, baseTheme: this.props.baseTheme }
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('drupal8/_theme.libraries.yml'),
+        this.destinationPath(this.props.projectName + '.libraries.yml')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('drupal8/_theme.layouts.yml'),
+        this.destinationPath(this.props.projectName + '.layouts.yml')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('drupal8/_theme.breakpoints.yml'),
+        this.destinationPath(this.props.projectName + '.breakpoints.yml'),
+        {projectName: this.props.projectName}
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('drupal8/_theme.theme'),
+        this.destinationPath(this.props.projectName + '.theme'),
+        {projectSlug: this.props.projectSlug}
+      );
+
+      // Template files
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/html.html.twig'),
+        this.destinationPath(this.props.templateDir + '/html.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/page.html.twig'),
+        this.destinationPath(this.props.templateDir + '/page.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/ds_layouts/ds-offers/ds-offer.html.twig'),
+        this.destinationPath(this.props.templateDir + '/ds_layouts/ds-offers/ds-offer.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/regions/region--content.html.twig'),
+        this.destinationPath(this.props.templateDir + '/regions/region--content.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/regions/region--header.html.twig'),
+        this.destinationPath(this.props.templateDir + '/regions/region--header.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/regions/region--sidebar-first.html.twig'),
+        this.destinationPath(this.props.templateDir + '/regions/region--sidebar-first.html.twig')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal8/tpl/regions/region--sidebar-second.html.twig'),
+        this.destinationPath(this.props.templateDir + '/regions/region--sidebar-second.html.twig')
+      );
+
+    } else if (this.props.drupalV === 7) {
+      // Drupal 7 theme build
+
+      this.fs.copyTpl(
+        this.templatePath('drupal7/_template.php'),
+        this.destinationPath('template.php')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('drupal7/_theme.info'),
+        this.destinationPath(this.props.projectName + '.info'),
+        {projectName: this.props.projectName, baseTheme: this.props.baseTheme}
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal7/tpl/html.tpl.php'),
+        this.destinationPath(this.props.templateDir + '/html.tpl.php')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal7/tpl/page.tpl.php'),
+        this.destinationPath(this.props.templateDir + '/page.tpl.php')
+      );
+
+      this.fs.copy(
+        this.templatePath('drupal7/tpl/maintenance-page.tpl.php'),
+        this.destinationPath(this.props.templateDir + '/maintenance-page.tpl.php')
+      );
+    }
+
+    // General theme files.
+    // Sample JavaScript file.
+    this.fs.copy(
+      this.templatePath('cowfe/assets/js/scripts.js'),
+      this.destinationPath(this.props.jsDir + '/scripts.js')
+    );
+
+    // Generate scss base files
+    this.fs.copy(
+      this.templatePath('cowfe/assets/scss/_mixins.scss'),
+      this.destinationPath(this.props.scss + '/_mixins.scss')
+    );
+
+    this.fs.copy(
+      this.templatePath('cowfe/assets/scss/_variables.scss'),
+      this.destinationPath(this.props.scss + '/_variables.scss')
+    );
+
+    this.fs.copy(
+      this.templatePath('cowfe/assets/scss/_debug.scss'),
+      this.destinationPath(this.props.scss + '/_debug.scss')
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('cowfe/assets/scss/style.scss'),
+      this.destinationPath(this.props.scss + '/style.scss'),
+      {npmModules: this.props.npm}
+    );
+
+    // Gulp file
+    this.fs.copyTpl(
+      this.templatePath('cowfe/_gulpfile.js'),
+      this.destinationPath('gulpfile.js'),
+      {npmModules: this.props.npm}
+    );
+
+    // Copy screenshot
+    this.fs.copy(
+      this.templatePath('cowfe/screenshot.png'),
+      this.destinationPath('screenshot.png')
+    );
+
+    // Some config files we want to have.
+    this.fs.copy(
+      this.templatePath('cowfe/gitignore'),
+      this.destinationPath('.gitignore')
+    );
+
+    // Package json for gulp
+    this.fs.copyTpl(
+      this.templatePath('cowfe/_package.json'),
+      this.destinationPath('package.json'),
+      {projectName: this.props.projectName, projectSlug: this.props.projectSlug, npmModules: this.props.npm}
+    );
+  }
+
+  install() {
+    if (this.props.nodeInstall) {
+      this.installDependencies({
+        npm: this.props.nodeInstall,
+        bower: false,
+        yarn: false
+      });
+    }
+  }
+};

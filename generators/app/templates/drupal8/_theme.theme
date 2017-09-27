@@ -1,0 +1,38 @@
+<?php
+
+// remove bugy single page site scroll js and make functionality in theme js
+function <%= projectSlug %>_js_alter(&$javascript, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+  // Example
+  // unset($javascript['modules/contrib/single_page_site/js/single-page-site-scroll.js']);
+}
+
+function <%= projectSlug %>_form_alter(&$form, &$form_state, $form_id) {
+
+//  unset($form['actions']['preview']);
+//  $form['actions']['submit']['#prefix'] = '';
+//  $form['actions']['submit']['#suffix'] = '';
+//  $form['actions']['submit']['#value'] = t("kontakt");
+}
+
+//template_preprocess_region
+function <%= projectSlug %>_preprocess_region(&$vars) {
+
+  // create region class array
+  $vars['region_class'] = array();
+
+  // set content class
+  $content_class = theme_get_setting('class_content');
+  if( !empty($content_class) ) {
+    $vars['region_class']['content'] = $content_class;
+  }
+
+  $sidebar_first_class = theme_get_setting('class_sidebar_first');
+  if( !empty($sidebar_first_class) ) {
+    $vars['region_class']['sidebar_first'] = $sidebar_first_class;
+  }
+
+  $sidebar_second_class = theme_get_setting('class_sidebar_second');
+  if( !empty($sidebar_second_class) ) {
+    $vars['region_class']['sidebar_second'] = $sidebar_second_class;
+  }
+}

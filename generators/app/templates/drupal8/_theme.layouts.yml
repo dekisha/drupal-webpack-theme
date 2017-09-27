@@ -1,0 +1,14 @@
+ds_offer:
+  label: offer page suite
+  category: Display Suite
+  class: '\Drupal\ds\Plugin\DsLayout'
+  type: partial
+  template: templates/ds_layout/ds-ponuda/ds-offer
+  icon: false
+  regions:
+    ds_content:
+      label: Content
+    ds_sidebar:
+      label: Sidebar
+    ds_tabs:
+      label: Tabs

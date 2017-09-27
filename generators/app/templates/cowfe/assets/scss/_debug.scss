@@ -1,0 +1,63 @@
+// ----------------------------------------------------------------------------
+// Debug
+// ----------------------------------------------------------------------------
+
+// default set to false
+$debug: false !default;
+
+// check if debug
+@if $debug == true {
+
+  @include sgs-change('debug', true);
+
+  :root {
+    padding-bottom: 20px;
+  }
+
+  body {
+
+    &:after {
+      color: white;
+      display: block;
+      position: fixed;
+      text-align: center;
+      width: 100%;
+      z-index: 3;
+      bottom: 0;
+      height: 20px;
+      overflow: hidden;
+      @include breakpoint($xs) {
+        background: red;
+        content: 'XS';
+      }
+      @include breakpoint($s) {
+        background: orange;
+        content: 'S';
+      }
+      @include breakpoint($m) {
+        background: GOLD;
+        content: 'M';
+      }
+      @include breakpoint($l) {
+        background: GREEN;
+        content: 'L';
+      }
+      @include breakpoint($xl) {
+        background: BLUE;
+        content: 'XL';
+      }
+      @include breakpoint($xxl) {
+        background: PURPLE;
+        content: 'XXL';
+      }
+      @include breakpoint($xxxl) {
+        background: INDIGO;
+        content: 'XXXL';
+      }
+    }
+    &.adminimal-menu:after {
+      top: 29px;
+    }
+  }
+
+}// end check

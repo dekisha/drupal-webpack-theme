@@ -1,0 +1,70 @@
+<div id="page">
+
+  {# page top region #}
+  {% if page.top %}
+    {{ page.top }}
+  {% endif %}
+
+  {# header region #}
+  {% if page.header %}
+    {{ page.header }}
+  {% endif %}
+
+  {# Navigation region #}
+  {% if page.navigation %}
+    {{ page.navigation }}
+  {% endif %}
+
+  {% if page.help %}
+    {{ page.help }}
+  {% endif %}
+
+  {% if page.highlighted %}
+    {{ page.highlighted }}
+  {% endif %}
+
+  {% if page.featured %}
+    {{ page.featured }}
+  {% endif %}
+
+  {% if page.pre_content %}
+    {{ page.pre_content }}
+  {% endif %}
+
+  {# main container #}
+  <main class="main" role="main">
+    <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+    {% if page.content %}
+      {{ page.content }}
+    {% endif %}
+
+    {% if page.sidebar_first %}
+      {{ page.sidebar_first }}
+    {% endif %}
+
+    {% if page.sidebar_second %}
+      {{ page.sidebar_second }}
+    {% endif %}
+
+  </main>
+
+  {% if page.post_content %}
+    {{ page.post_content }}
+  {% endif %}
+
+  <footer id="footer">
+    {% if page.post_footer %}
+      {{ page.post_footer }}
+    {% endif %}
+
+    {% if page.footer %}
+      {{ page.footer }}
+    {% endif %}
+
+    {% if page.post_footer %}
+      {{ page.post_footer }}
+    {% endif %}
+  </footer>
+
+</div> {# /page #}

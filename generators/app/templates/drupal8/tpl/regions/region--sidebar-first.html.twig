@@ -1,0 +1,11 @@
+{%
+set set_class = [
+'region','region-sidebar-first', region_class.sidebar_first
+]
+%}
+
+{% if content %}
+  <aside{{ attributes.addClass(set_class) }}>
+    {{ content }}
+  </aside>
+{% endif %}

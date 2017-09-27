@@ -1,0 +1,30 @@
+; new theme
+core = 7.x
+version = VERSION
+
+name = <%= projectName %>
+description = <%= projectName %> theme
+<% if (baseTheme){ %>
+base theme = <%= baseTheme %><% } %>
+
+stylesheets[all][] = css/screen.css
+
+scripts[] = js/scripts.js
+
+
+regions[top] = Top
+regions[header] = Header
+regions[navigation] = Navigation
+
+regions[help] = Help
+regions[highlighted] = Highlighted
+regions[featured] = Featured
+
+regions[content] = Content
+regions[sidebar_first] = Sidebar first
+regions[sidebar_second] = Sidebar second
+regions[post_content] = Post-Content
+
+regions[pre_footer] = Pre-footer
+regions[footer] = Footer
+regions[post_footer] = Post-footer

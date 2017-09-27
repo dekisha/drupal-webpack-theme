@@ -1,0 +1,51 @@
+// ----------------------------------------------------------------------------
+// Variables
+// ----------------------------------------------------------------------------
+
+// Singularity Legacy support
+
+$legacy-support-for-ie6: false;
+$legacy-support-for-ie7: false;
+$legacy-support-for-ie8: false;
+
+// Singularity Grid
+//@include add-grid(12);
+//@include add-gutter(1/2);
+
+// Breakpoints: Min-width
+
+$xs:    480px;
+$s:    	550px;
+$m:   	768px;
+$l:    	992px;
+$xl:    1200px;
+$xxl:   1400px;
+$xxxl: 	1600px;
+
+// Breakpoints: Max-width
+
+$upto-xs:   max-width ($xs - 1px);
+$upto-s:  	max-width ($s - 1px);
+$upto-m:   	max-width ($m - 1px);
+$upto-l:    max-width ($l - 1px);
+$upto-xl:   max-width ($xl - 1px);
+$upto-xxl:  max-width ($xxl - 1px);
+
+// Breakpoints: Between Min-width & Max-width
+
+$xs-s: 	$xs ($s - 1px);
+$s-m:  		$s ($m - 1px);
+$s-l:   	$s ($l - 1px);
+$s-xl:    	$s ($xl - 1px);
+$m-l:  		$m ($l - 1px);
+$m-xl:   	$m ($xl - 1px);
+$l-xl:    	$l ($xl - 1px);
+$xl-xxl:    $xl ($xxl - 1px);
+
+// fonts
+
+// Colors
+
+// Rounding
+
+$radius: 4px;

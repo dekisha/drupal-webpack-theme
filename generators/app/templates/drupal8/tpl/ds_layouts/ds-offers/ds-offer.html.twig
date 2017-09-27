@@ -1,0 +1,41 @@
+{#
+/**
+ * @file
+ * Display Suite 1 column template.
+ *
+ * Available variables:
+ * - ds_content_wrapper: wrapper around content
+ * - attributes: content region attributes
+ * - ds_content: content region
+ */
+#}
+{%
+set ds_classes = [
+ds_sidebar ? 'sidebar-active',
+]
+%}
+
+<{{ ds_content_wrapper }}{{ attributes.addClass('ds-offer', ds_classes) }}>
+
+{{ title_suffix.contextual_links }}
+
+  {% if ds_sidebar %}
+    <aside class="offer--aside">
+      <h2>sidebar</h2>
+      {{ ds_sidebar }}
+    </aside>
+  {% endif %}
+
+<section class="offer--content">
+  {% if ds_content %}
+    {{ ds_content }}
+  {% endif %}
+
+  {% if ds_tabs %}
+    <section class="tabs">
+      {{ ds_tabs }}
+    </section>
+  {% endif %}
+</section>
+
+</{{ ds_content_wrapper }}>
