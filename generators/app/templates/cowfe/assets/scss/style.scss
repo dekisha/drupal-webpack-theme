@@ -41,8 +41,8 @@
 
 @import 'node_modules/normalize-scss/sass/normalize.scss';
 @import 'node_modules/breakpoint-sass/stylesheets/breakpoint.scss';
-<% if( npmModules.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
-<% if( npmModules.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
+<% if( props.npm.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
+<% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
 
 
 

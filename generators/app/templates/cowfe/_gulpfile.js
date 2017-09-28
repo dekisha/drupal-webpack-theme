@@ -1,4 +1,10 @@
 //VARIABLES
+
+//@TODO add new lib
+// gp_postcss_size
+// gp_assets
+// postcss_svg
+
 var gulp = require('gulp'),
   gp_sass = require('gulp-sass'),
   gp_sourcemaps = require('gulp-sourcemaps'),
@@ -19,7 +25,7 @@ var gulp = require('gulp'),
     postcss_font_awesome
   ],
   jsfiles = [
-    <% if( npmModules.slick ) { %>'node_modules/slick-carousel/slick/slick.js',<% } %>
+    <% if( props.npm.slick ) { %>'node_modules/slick-carousel/slick/slick.js',<% } %>
     'assets/js/scripts.js'
   ],
   scssfiles = [
@@ -96,7 +102,6 @@ gulp.task('watch', function() {
   gulp.watch(sassWatcher, ['styles']);
   gulp.watch(jsfiles, ['scripts']);
   gp_livereload.listen();
-  // gulp.watch('*.html').on('change', browserSync.reload);
 });
 
 gulp.task('w' ,['browser-sync'] , function() {

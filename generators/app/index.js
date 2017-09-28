@@ -4,6 +4,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const _s = require('underscore.string');
 const mkdirp = require('mkdirp');
+const themeV = '1.0.0';
 
 module.exports = class extends Generator {
   prompting() {
@@ -94,14 +95,14 @@ module.exports = class extends Generator {
     this.props.templateDir = 'templates';
     this.props.favIcoDir = 'favicon';
     this.props.projectSlug = _s.underscored(this.props.projectName);
+    this.props.version = themeV;
   }
 
   writing() {
-
     // Create project name directory
     mkdirp.sync(this.props.projectName);
 
-    // Set project name to be destionation root folder
+    // Set project name to be destination root folder
     this.destinationRoot(this.props.projectName);
 
     // Make all required directories what we will need.
@@ -119,7 +120,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.info.yml'),
         this.destinationPath(this.props.projectName + '.info.yml'),
-        {projectName: this.props.projectName, baseTheme: this.props.baseTheme, description: this.props.description }
+        {props: this.props}
       );
 
       this.fs.copyTpl(
@@ -135,13 +136,15 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.breakpoints.yml'),
         this.destinationPath(this.props.projectName + '.breakpoints.yml'),
-        {projectName: this.props.projectName}
+        {props: this.props}
+        // {projectName: this.props.projectName}
       );
 
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.theme'),
         this.destinationPath(this.props.projectName + '.theme'),
-        {projectSlug: this.props.projectSlug}
+        {props: this.props}
+        // {projectSlug: this.props.projectSlug}
       );
 
       // Template files
@@ -179,7 +182,6 @@ module.exports = class extends Generator {
         this.templatePath('drupal8/tpl/regions/region--sidebar-second.html.twig'),
         this.destinationPath(this.props.templateDir + '/regions/region--sidebar-second.html.twig')
       );
-
     } else if (this.props.drupalV === 7) {
       // Drupal 7 theme build
 
@@ -191,7 +193,8 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('drupal7/_theme.info'),
         this.destinationPath(this.props.projectName + '.info'),
-        {projectName: this.props.projectName, baseTheme: this.props.baseTheme}
+        {props: this.props}
+        // {projectName: this.props.projectName, baseTheme: this.props.baseTheme}
       );
 
       this.fs.copy(
@@ -236,17 +239,18 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('cowfe/assets/scss/style.scss'),
       this.destinationPath(this.props.scss + '/style.scss'),
-      {npmModules: this.props.npm}
+      {props: this.props}
+      // {npmModules: this.props.npm}
     );
 
     // Gulp file
     this.fs.copyTpl(
       this.templatePath('cowfe/_gulpfile.js'),
       this.destinationPath('gulpfile.js'),
-      {npmModules: this.props.npm}
+      {props: this.props}
     );
 
-    // Copy screenshot
+    // Copy screenshots
     this.fs.copy(
       this.templatePath('cowfe/screenshot.png'),
       this.destinationPath('screenshot.png')
@@ -262,7 +266,8 @@ module.exports = class extends Generator {
     this.fs.copyTpl(
       this.templatePath('cowfe/_package.json'),
       this.destinationPath('package.json'),
-      {projectName: this.props.projectName, projectSlug: this.props.projectSlug, npmModules: this.props.npm}
+      {props: this.props}
+      // {projectName: this.props.projectName, projectSlug: this.props.projectSlug, npmModules: this.props.npm}
     );
   }
 
@@ -273,6 +278,8 @@ module.exports = class extends Generator {
         bower: false,
         yarn: false
       });
+    } else {
+      return false;
     }
   }
 };

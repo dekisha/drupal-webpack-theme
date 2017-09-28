@@ -1,11 +1,11 @@
 # new theme
 core: 8.x
 type: theme<%
-if (baseTheme){ %>
-base theme: <%= baseTheme %><% } %>
+if (props.baseTheme){ %>
+base theme: <%= props.baseTheme %><% } %>
 
-name: <%= projectName %>
-description: <%= description %>
+name: <%= props.projectName %>
+description: <%= props.description %>
 package: Core
 
 regions:
@@ -29,7 +29,7 @@ regions:
 #
 # Load library
 libraries:
-  - '<%= projectName %>/global'
+  - '<%= props.projectName %>/global'
 
 #
 # Remove style from core or modules

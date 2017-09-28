@@ -2,10 +2,10 @@
 core = 7.x
 version = VERSION
 
-name = <%= projectName %>
-description = <%= description %>
-<% if (baseTheme){ %>
-base theme = <%= baseTheme %><% } %>
+name = <%= props.projectName %>
+description = <%= props.description %>
+<% if (props.baseTheme){ %>
+base theme = <%= props.baseTheme %><% } %>
 
 stylesheets[all][] = css/screen.css
 

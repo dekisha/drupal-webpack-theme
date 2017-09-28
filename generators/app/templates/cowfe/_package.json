@@ -1,7 +1,7 @@
 {
-  "name": "<%= projectSlug %>",
-  "title": "<%= projectName %>",
-  "version": "0.0.1",
+  "name": "<%= props.projectSlug %>",
+  "title": "<%= props.projectName %>",
+  "version": "<%= props.version %>",
   "description": "Theme built by Coworks team. Runs with gulp",
   "authors": [
     {
@@ -33,11 +33,11 @@
     "postcss-position": "^1.0.0",
     "postcss-size": "^2.0.0"<%
 
-  if (npmModules.singularity){%>,
+  if (props.npm.singularity){%>,
     "singularitygs": "^1.7.0"<%
   }
 
-  if (npmModules.slick) {%>,
+  if (props.npm.slick) {%>,
     "slick-carousel": "^1.7.1"<%
   } %>
   },

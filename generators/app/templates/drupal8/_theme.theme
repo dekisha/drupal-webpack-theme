@@ -1,12 +1,12 @@
 <?php
 
 // remove bugy single page site scroll js and make functionality in theme js
-function <%= projectSlug %>_js_alter(&$javascript, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
+function <%= props.projectSlug %>_js_alter(&$javascript, \Drupal\Core\Asset\AttachedAssetsInterface $assets) {
   // Example
   // unset($javascript['modules/contrib/single_page_site/js/single-page-site-scroll.js']);
 }
 
-function <%= projectSlug %>_form_alter(&$form, &$form_state, $form_id) {
+function <%= props.projectSlug %>_form_alter(&$form, &$form_state, $form_id) {
 
 //  unset($form['actions']['preview']);
 //  $form['actions']['submit']['#prefix'] = '';
@@ -15,7 +15,7 @@ function <%= projectSlug %>_form_alter(&$form, &$form_state, $form_id) {
 }
 
 //template_preprocess_region
-function <%= projectSlug %>_preprocess_region(&$vars) {
+function <%= props.projectSlug %>_preprocess_region(&$vars) {
 
   // create region class array
   $vars['region_class'] = array();
