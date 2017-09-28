@@ -3,7 +3,7 @@ core = 7.x
 version = VERSION
 
 name = <%= projectName %>
-description = <%= projectName %> theme
+description = <%= description %>
 <% if (baseTheme){ %>
 base theme = <%= baseTheme %><% } %>
 

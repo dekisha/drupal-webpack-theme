@@ -46,14 +46,14 @@ module.exports = class extends Generator {
       {
         type: 'string',
         name: 'projectName',
-        message: 'What\'s your theme\'s name?' + chalk.red(' (Required)'),
-        validate: function (input) {
-          if (input === '') {
-            return 'Please enter your theme\'s name';
-          }
-          return true;
-        },
+        message: 'What\'s your theme\'s name?',
         default: 'cowfe'
+      },
+      {
+        type: 'string',
+        name: 'description',
+        message: 'Project description',
+        default: 'Cowfe Drupal theme by Coworks'
       },
       {
         type: 'list',
@@ -119,7 +119,7 @@ module.exports = class extends Generator {
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.info.yml'),
         this.destinationPath(this.props.projectName + '.info.yml'),
-        {projectName: this.props.projectName, baseTheme: this.props.baseTheme }
+        {projectName: this.props.projectName, baseTheme: this.props.baseTheme, description: this.props.description }
       );
 
       this.fs.copyTpl(

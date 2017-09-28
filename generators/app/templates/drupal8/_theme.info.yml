@@ -5,7 +5,7 @@ if (baseTheme){ %>
 base theme: <%= baseTheme %><% } %>
 
 name: <%= projectName %>
-description: <%= projectName %> theme
+description: <%= description %>
 package: Core
 
 regions:
