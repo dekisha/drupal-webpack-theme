@@ -1,0 +1,83 @@
+<div class="l-container">
+  
+  {% if page.top %}
+    <aside class="l-top">
+      <div class="o-wrapper">
+        {{ page.top }}
+      </div>
+    </aside>
+  {% endif %}
+  
+  <header class="l-header" id="header" role="banner">
+    <div class="o-wrapper">
+      {{ page.header }}
+      {{ page.navigation }}
+    </div>
+  </header>
+
+  <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
+
+  {% if page.highlighted %}
+    <div class="l-highlighted">
+      <div class="o-wrapper">
+        {{ page.highlighted }}
+      </div>
+    </div>
+  {% endif %}
+
+  {% if page.pre_content %}
+    <div class="l-pre-content">
+      <div class="o-wrapper">
+        {{ page.pre_content }}
+      </div>
+    </div>
+  {% endif %}
+  
+  <main class="l-main" role="main">
+    <div class="o-wrapper">
+      <div class="o-layout">
+        
+        <div class="l-content">
+          {{ page.help }}
+          {{ page.content }}
+        </div>{# /.l-content #}
+        
+        {% if page.sidebar_first %}
+        <div class="l-sidebar-first">
+          {{ page.sidebar_first }}
+        </div>{# /.l-sidebar-first #}
+        {% endif %}
+        
+        {% if page.sidebar_second %}
+          <div class="l-sidebar-second">
+            {{ page.sidebar_second }}
+          </div>{# /.l-sidebar-second #}
+        {% endif %}
+        
+      </div>{# /.o-layout #}
+    </div>{# /.o-wrapper #}
+  </main>{# /.l-main #}
+  
+  {% if page.post_content %}
+  <div class="l-post-content">
+    {{ page.post_content }}
+  </div>
+  {% endif %}
+
+  {% if page.footer %}
+    <footer class="l-footer" role="contentinfo">
+      <div class="o-wrapper">
+        {{ page.footer }}
+      </div>
+    </footer>
+  {% endif %}
+
+  {% if page.bottom %}
+    <footer class="l-bottom" role="contentinfo">
+      <div class="o-wrapper">
+        {{ page.bottom }}
+      </div>
+    </footer>
+  {% endif %}
+
+</div>{# /.l-container #}

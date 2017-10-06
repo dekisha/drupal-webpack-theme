@@ -1,4 +1,3 @@
-# new theme
 core: 8.x
 type: theme<%
 if (props.baseTheme){ %>
@@ -12,29 +11,24 @@ regions:
   top: Top
   header: Header
   navigation: Navigation
-
   help: Help
   highlighted: Highlighted
   featured: Featured
-
+  pre_content: Pre-content
   content: Content
+  post_content: Post-content
   sidebar_first: Sidebar first
   sidebar_second: Sidebar second
-  post_content: Post-content
-
-  pre_footer: Pre-footer
   footer: Footer
-  post_footer: Post-footer
+  bottom: Bottom
 
-#
-# Load library
 libraries:
   - '<%= props.projectSlug %>/global'
-
-#
-# Remove style from core or modules
-stylesheets-remove:
-#  - '@classy/css/components/tabs.css'
-#  - core/assets/vendor/normalize-css/normalize.css
-
+  
 libraries-override:
+  classy/base:
+    css:
+      component:
+        css/components/links.css: false
+        css/components/menu.css: false
+        css/components/tabs.css: false

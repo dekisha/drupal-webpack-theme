@@ -1,0 +1,70 @@
+// ----------------------------------------------------------------------------
+// VARIABLES
+// ----------------------------------------------------------------------------
+// Fonts
+$font-default: 'Asap', sans-serif;
+
+// Colors
+$color-grey-lightest:  #f5f4fa; // pre-content bg
+$color-grey-lighter:   #ebecec;
+$color-grey:           #dedee3;
+$color-grey-darker:    #bbbcbc;
+$color-grey-darkest:   #999a9a;
+$color-dark-lighter:   #373634;
+$color-dark:           #2c2a29;
+$color-green:          #00a28f;
+$color-green-lighter:  #8cfff2;
+$color-blue:           #0063ac;
+
+$color-facebook:   #3B5998;
+$color-instagram:  #e4405f;
+$color-linkedin:   #0077b5;
+$color-twitter:    #1da1f2;
+$color-youtube:    #cd201f;
+
+// Rounding
+$radius:     4px;
+$radius-btn: $radius;
+
+// Widths
+$wrapper-width: 1200px;
+$spacing-unit: 20px;
+$menu-item-width: 130px;
+
+// Heights
+$header-height: 80px;
+
+// Times
+$transition_time: (1/3) + s;
+
+// Breakpoints: Min-width
+$xs:    480px;
+$s:    	550px;
+$m:   	768px;
+$l:     992px;
+$xl:   1200px;
+$xxl:  1400px;
+$xxxl: 1600px;
+
+// Breakpoints: Max-width
+$upto-xs:  max-width ($xs  - 1px);
+$upto-s:   max-width ($s   - 1px);
+$upto-m:   max-width ($m   - 1px);
+$upto-l:   max-width ($l   - 1px);
+$upto-xl:  max-width ($xl  - 1px);
+$upto-xxl: max-width ($xxl - 1px);
+
+// Breakpoints: Between Min-width & Max-width
+$xs-s: 	 $xs ($s   - 1px);
+$s-m:  	 $s  ($m   - 1px);
+$s-l:    $s  ($l   - 1px);
+$s-xl:   $s  ($xl  - 1px);
+$m-l:    $m  ($l   - 1px);
+$m-xl:   $m  ($xl  - 1px);
+$l-xl:   $l  ($xl  - 1px);
+$xl-xxl: $xl ($xxl - 1px);
+
+// ----------------------------------------------------------------------------
+// CONFIG
+// ----------------------------------------------------------------------------
+$debug: false !default;

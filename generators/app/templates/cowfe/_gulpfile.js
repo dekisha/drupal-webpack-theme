@@ -29,8 +29,8 @@ var gulp = require('gulp'),
       paths: ['assets/svg']
     })
   ],
-  jsfiles = [
-    <% if( props.npm.slick ) { %>'node_modules/slick-carousel/slick/slick.js',<% } %>
+  jsfiles = [<%
+    if( props.npm.slick ) { %>'node_modules/slick-carousel/slick/slick.js',<% } %>
     'assets/js/scripts.js'
   ],
   scssfiles = [
