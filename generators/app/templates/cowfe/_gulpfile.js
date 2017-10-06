@@ -1,10 +1,5 @@
 //VARIABLES
 
-//@TODO add new lib
-// gp_postcss_size
-// gp_assets
-// postcss_svg
-
 var gulp = require('gulp'),
   gp_sass = require('gulp-sass'),
   gp_sourcemaps = require('gulp-sourcemaps'),
@@ -14,15 +9,25 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync').create(),
   gp_concat = require('gulp-concat'),
   gp_uglify = require('gulp-uglify'),
+  gp_postcss_size = require('postcss-size'),
+  gp_assets = require('postcss-assets'),
   gp_filter = require('gulp-filter'),
   gp_livereload = require('gulp-livereload'),
   gp_header = require('gulp-header'),
+  postcss_svg = require('postcss-svg'),
   processors = [
     autoprefixer({
       browsers: ['last 5 versions', 'IE 9', 'IE 10'],
       cascade: false
     }),
-    postcss_font_awesome
+    postcss_font_awesome,
+    gp_assets({
+      loadPaths: ['assets/images']
+    }),
+    gp_postcss_size,
+    postcss_svg({
+      paths: ['assets/svg']
+    })
   ],
   jsfiles = [
     <% if( props.npm.slick ) { %>'node_modules/slick-carousel/slick/slick.js',<% } %>
@@ -35,9 +40,7 @@ var gulp = require('gulp'),
     'assets/**/**.scss'
   ],
   fonts = [
-    'node_modules/font-awesome/fonts/*',
-    'node_modules/npm-font-open-sans/fonts/Bold/*',
-    'node_modules/npm-font-open-sans/fonts/Regular/*'
+    'node_modules/font-awesome/fonts/*'
   ];
 
 //SETTINGS
