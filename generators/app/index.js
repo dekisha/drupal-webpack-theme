@@ -45,6 +45,12 @@ module.exports = class extends Generator {
         choices: drupalVersionList
       },
       {
+        type: 'confirm',
+        name: 'installer',
+        message: 'Do you want to use deki theme installer',
+        default: false
+      },
+      {
         type: 'string',
         name: 'projectName',
         message: 'What\'s your theme\'s name?',
@@ -94,16 +100,17 @@ module.exports = class extends Generator {
     this.props.fontsDir = 'fonts';
     this.props.templateDir = 'templates';
     this.props.favIcoDir = 'favicon';
+    this.props.dConfig = 'config/install';
     this.props.projectSlug = _s.underscored(this.props.projectName);
     this.props.version = themeV;
   }
 
   writing() {
     // Create project name directory
-    mkdirp.sync(this.props.projectName);
+    mkdirp.sync(this.props.projectSlug);
 
     // Set project name to be destination root folder
-    this.destinationRoot(this.props.projectName);
+    this.destinationRoot(this.props.projectSlug);
 
     // Make all required directories what we will need.
     mkdirp.sync(this.props.scss);
@@ -117,71 +124,96 @@ module.exports = class extends Generator {
     if (this.props.drupalV === 8) {
       // Drupal 8 theme build
 
+      mkdirp.sync(this.props.dConfig);
+
+      // Config drupal install theme
       this.fs.copyTpl(
-        this.templatePath('drupal8/_theme.info.yml'),
-        this.destinationPath(this.props.projectName + '.info.yml'),
+        this.templatePath('drupal8/config/install/_theme.settings.yml'),
+        this.destinationPath(this.props.dConfig + '/' + this.props.projectSlug + '.info.yml'),
+        {props: this.props}
+      );
+
+      let tmpThemeInfo = 'drupal8/_theme.info.yml';
+      if (this.props.installer) {
+        tmpThemeInfo = 'deki/_theme.info.yml';
+      }
+
+      this.fs.copyTpl(
+        this.templatePath(tmpThemeInfo),
+        this.destinationPath(this.props.projectSlug + '.info.yml'),
         {props: this.props}
       );
 
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.libraries.yml'),
-        this.destinationPath(this.props.projectName + '.libraries.yml')
+        this.destinationPath(this.props.projectSlug + '.libraries.yml')
       );
 
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.layouts.yml'),
-        this.destinationPath(this.props.projectName + '.layouts.yml')
+        this.destinationPath(this.props.projectSlug + '.layouts.yml')
       );
 
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.breakpoints.yml'),
-        this.destinationPath(this.props.projectName + '.breakpoints.yml'),
+        this.destinationPath(this.props.projectSlug + '.breakpoints.yml'),
         {props: this.props}
-        // {projectName: this.props.projectName}
       );
 
       this.fs.copyTpl(
         this.templatePath('drupal8/_theme.theme'),
-        this.destinationPath(this.props.projectName + '.theme'),
+        this.destinationPath(this.props.projectSlug + '.theme'),
         {props: this.props}
         // {projectSlug: this.props.projectSlug}
       );
 
       // Template files
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/html.html.twig'),
-        this.destinationPath(this.props.templateDir + '/html.html.twig')
-      );
+      if (this.props.installer) {
+        this.fs.copy(
+          this.templatePath('deki/tpl/html.html.twig'),
+          this.destinationPath(this.props.templateDir + '/html.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/page.html.twig'),
-        this.destinationPath(this.props.templateDir + '/page.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('deki/tpl/page.html.twig'),
+          this.destinationPath(this.props.templateDir + '/page.html.twig')
+        );
+      } else {
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/html.html.twig'),
+          this.destinationPath(this.props.templateDir + '/html.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/ds_layouts/ds-offers/ds-offer.html.twig'),
-        this.destinationPath(this.props.templateDir + '/ds_layouts/ds-offers/ds-offer.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/page.html.twig'),
+          this.destinationPath(this.props.templateDir + '/page.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/regions/region--content.html.twig'),
-        this.destinationPath(this.props.templateDir + '/regions/region--content.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/ds_layouts/ds-offers/ds-offer.html.twig'),
+          this.destinationPath(this.props.templateDir + '/ds_layouts/ds-offers/ds-offer.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/regions/region--header.html.twig'),
-        this.destinationPath(this.props.templateDir + '/regions/region--header.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/regions/region--content.html.twig'),
+          this.destinationPath(this.props.templateDir + '/regions/region--content.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/regions/region--sidebar-first.html.twig'),
-        this.destinationPath(this.props.templateDir + '/regions/region--sidebar-first.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/regions/region--header.html.twig'),
+          this.destinationPath(this.props.templateDir + '/regions/region--header.html.twig')
+        );
 
-      this.fs.copy(
-        this.templatePath('drupal8/tpl/regions/region--sidebar-second.html.twig'),
-        this.destinationPath(this.props.templateDir + '/regions/region--sidebar-second.html.twig')
-      );
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/regions/region--sidebar-first.html.twig'),
+          this.destinationPath(this.props.templateDir + '/regions/region--sidebar-first.html.twig')
+        );
+
+        this.fs.copy(
+          this.templatePath('drupal8/tpl/regions/region--sidebar-second.html.twig'),
+          this.destinationPath(this.props.templateDir + '/regions/region--sidebar-second.html.twig')
+        );
+      }
     } else if (this.props.drupalV === 7) {
       // Drupal 7 theme build
 
@@ -192,9 +224,8 @@ module.exports = class extends Generator {
 
       this.fs.copyTpl(
         this.templatePath('drupal7/_theme.info'),
-        this.destinationPath(this.props.projectName + '.info'),
+        this.destinationPath(this.props.projectSlug + '.info'),
         {props: this.props}
-        // {projectName: this.props.projectName, baseTheme: this.props.baseTheme}
       );
 
       this.fs.copy(
@@ -221,27 +252,71 @@ module.exports = class extends Generator {
     );
 
     // Generate scss base files
-    this.fs.copy(
-      this.templatePath('cowfe/assets/scss/_mixins.scss'),
-      this.destinationPath(this.props.scss + '/_mixins.scss')
-    );
+    if (this.props.installer) {
 
-    this.fs.copy(
-      this.templatePath('cowfe/assets/scss/_variables.scss'),
-      this.destinationPath(this.props.scss + '/_variables.scss')
-    );
+      this.fs.copyTpl(
+        this.templatePath('deki/assets/scss/style.scss'),
+        this.destinationPath(this.props.scss + '/style.scss'),
+        {props: this.props}
+      );
 
-    this.fs.copy(
-      this.templatePath('cowfe/assets/scss/_debug.scss'),
-      this.destinationPath(this.props.scss + '/_debug.scss')
-    );
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_utilities.scss'),
+        this.destinationPath(this.props.scss + '/_utilities.scss')
+      );
 
-    this.fs.copyTpl(
-      this.templatePath('cowfe/assets/scss/style.scss'),
-      this.destinationPath(this.props.scss + '/style.scss'),
-      {props: this.props}
-      // {npmModules: this.props.npm}
-    );
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_tools.scss'),
+        this.destinationPath(this.props.scss + '/_tools.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_settings.scss'),
+        this.destinationPath(this.props.scss + '/_settings.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_objects.scss'),
+        this.destinationPath(this.props.scss + '/_objects.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_layouts.scss'),
+        this.destinationPath(this.props.scss + '/_layouts.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_elements.scss'),
+        this.destinationPath(this.props.scss + '/_elements.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('deki/assets/scss/_components.scss'),
+        this.destinationPath(this.props.scss + '/_components.scss')
+      );
+    } else {
+      this.fs.copy(
+        this.templatePath('cowfe/assets/scss/_mixins.scss'),
+        this.destinationPath(this.props.scss + '/_mixins.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('cowfe/assets/scss/_variables.scss'),
+        this.destinationPath(this.props.scss + '/_variables.scss')
+      );
+
+      this.fs.copy(
+        this.templatePath('cowfe/assets/scss/_debug.scss'),
+        this.destinationPath(this.props.scss + '/_debug.scss')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('cowfe/assets/scss/style.scss'),
+        this.destinationPath(this.props.scss + '/style.scss'),
+        {props: this.props}
+      );
+    }
+
 
     // Gulp file
     this.fs.copyTpl(
@@ -267,7 +342,6 @@ module.exports = class extends Generator {
       this.templatePath('cowfe/_package.json'),
       this.destinationPath('package.json'),
       {props: this.props}
-      // {projectName: this.props.projectName, projectSlug: this.props.projectSlug, npmModules: this.props.npm}
     );
   }
 
@@ -278,8 +352,12 @@ module.exports = class extends Generator {
         bower: false,
         yarn: false
       });
-    } else {
-      return false;
     }
+
+    this.log(
+      chalk.green(
+        'Instalation finished. You can use theme now. \nCommand list:\n\nFor dev: gulp watch or gulp w \nFor production: gulp'
+      )
+    );
   }
 };

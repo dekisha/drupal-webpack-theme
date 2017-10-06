@@ -1,18 +1,18 @@
-<%= props.projectName %>.mobile:
+<%= props.projectSlug %>.mobile:
   label: xs ( mobile )
   modeaQuery: ''
   weight: 0
   multipliers:
     - 1x
     - 2x
-<%= props.projectName %>.tablet:
+<%= props.projectSlug %>.tablet:
   label: m ( tablet )
   mediaQuery: 'all and (min-width: 550px) and (max-width: 991px)'
   weight: 1
   multipliers:
     - 1x
     - 2x
-<%= props.projectName %>.desktop:
+<%= props.projectSlug %>.desktop:
   label: xl ( desktop )
   mediaQuery: 'all and (min-width: 992px)'
   weight: 2

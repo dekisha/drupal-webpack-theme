@@ -1,0 +1,31 @@
+// SETTINGS - colors, fonts, breakpoints...
+@import "settings.scss";
+
+
+// TOOLS - mixins
+@import "node_modules/breakpoint-sass/stylesheets/_breakpoint";
+<% if( props.npm.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
+<% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
+@import "tools";
+
+
+// GENERIC - resets, normalize, global style...
+@import "node_modules/normalize-scss/sass/_normalize";
+
+
+// ELEMENTS - default element style
+@import "elements";
+
+
+// OBJECTS - abstractions
+@import "objects";
+
+
+// COMPONENTS - particular component theming
+// @import "libraries/anim-hamburger/setup";
+@import "layouts";
+@import "components";
+
+
+// UTILITIES - do one thing, and one thing only classes
+@import "utilities";
