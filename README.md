@@ -64,7 +64,7 @@ yo cowfe
 MIT © [dejan dudukovic]()
 
 # Change logs
-#### Version: 1.1
+#### Version: 1.0.1
 
 - Added dekisha Drupal 8 theme structure
 - Fixed issue with space in project name
