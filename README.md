@@ -1,7 +1,7 @@
 # generator-cowfe [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > Yeoman Drupal theme generator for cowfe theme from coworks
 
-Generator version: 1.0.0
+Generator version: 1.0.1
 
 Theme version: 1.0.0
 
@@ -35,7 +35,7 @@ First, install [Yeoman](http://yeoman.io) and generator-cowfe using [npm](https:
 npm install -g yo
 ```
 
-### Install coworks cowfe yoman generator
+### Install coworks cowfe Yeoman generator
 
 1. git clone the generators repo locally
 2. cd into that repository and run npm link.
@@ -62,3 +62,9 @@ yo cowfe
 ## License
 
 MIT © [dejan dudukovic]()
+
+# Change logs
+#### Version: 1.1
+
+- Added dekisha Drupal 8 theme structure
+- Fixed issue with space in project name
