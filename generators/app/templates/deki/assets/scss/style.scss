@@ -1,8 +1,43 @@
+// ----------------------------------------------------------------------------
+// System Setup
+// ----------------------------------------------------------------------------
+// Install node.js
+// -- npm install -g gulp
+//
+// Go to the theme folder and run
+// -- npm install
+//
+// during dev run 
+// -- gulp watch
+//
+// when done run 
+// -- gulp
+//
+// ----------------------------------------------------------------------------
+// PostCSS plugins (see postcss:processors in gulpfile.js)
+// ----------------------------------------------------------------------------
+// Checkout the NPM pages for more info on the used plugins
+// ----------------------------------------------------------------------------
+// https://www.npmjs.com/package/normalize-scss
+// https://www.npmjs.com/package/breakpoint-sass
+// https://www.npmjs.com/package/singularitygs
+// https://www.npmjs.com/package/slick-carousel
+
+// Make sure to commit the changed gulpfile.js if you change plugin configs !!!
+
+// Load svg from source
+// background-image: svg("eye.svg", "[fill]: #fff");
+//
+// Load image from source
+// background-image: inline("icon-server.png");
+
+
+
 // SETTINGS - colors, fonts, breakpoints...
 @import "settings.scss";
 
 
-// TOOLS - globally used mixins and functions
+// TOOLS - globally used mixins and functions.
 @import "node_modules/breakpoint-sass/stylesheets/_breakpoint";
 <% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
 @import "tools";

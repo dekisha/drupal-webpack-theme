@@ -82,15 +82,12 @@ ul {
 }
 
 li {
-  // margin-bottom: gutter-span() / 2;
-  // margin-left: gutter-span();
 }
 
 li >  {
   ol,
   ul {
     margin-bottom: 0;
-    // margin-top: gutter-span() / 2;
   }
 }
 
@@ -242,11 +239,3 @@ blockquote {
     }
   }
 }
-
-// div:empty {
-//   border: 1px solid red;
-//   padding: 20px;
-//   &:before {
-//     content: "I am an empty element, plase remove me!"
-//   }
-// }

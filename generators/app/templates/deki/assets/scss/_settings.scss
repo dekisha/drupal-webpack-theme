@@ -78,13 +78,19 @@ $upto-xxl: max-width ($xxl - 1px);
 
 // Breakpoints: Between Min-width & Max-width
 $xs-s: 	 $xs ($s   - 1px);
+$xs-m: 	 $xs ($m   - 1px);
+$xs-l: 	 $xs ($l   - 1px);
+$xs-xl:  $xs ($xl  - 1px);
+$xs-xxl: $xs ($xxl - 1px);
 $s-m:  	 $s  ($m   - 1px);
 $s-l:    $s  ($l   - 1px);
 $s-xl:   $s  ($xl  - 1px);
+$s-xxl:  $s  ($xxl - 1px);
 $m-l:    $m  ($l   - 1px);
 $m-xl:   $m  ($xl  - 1px);
 $m-xxl:  $m  ($xxl - 1px);
 $l-xl:   $l  ($xl  - 1px);
+$l-xxl:  $l  ($xxl - 1px);
 $xl-xxl: $xl ($xxl - 1px);
 
 // ----------------------------------------------------------------------------
