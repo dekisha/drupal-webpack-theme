@@ -2,30 +2,30 @@
 @import "settings.scss";
 
 
-// TOOLS - mixins
+// TOOLS - globally used mixins and functions
 @import "node_modules/breakpoint-sass/stylesheets/_breakpoint";
 <% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
 @import "tools";
 
 
-// GENERIC - resets, normalize, global style...
+// GENERIC - reset and/or normalize styles, box-sizing definition, etc. This is the first layer which generates actual CSS.
 @import "node_modules/normalize-scss/sass/_normalize";
 
 
-// ELEMENTS - default element style
+// ELEMENTS - styling for bare HTML elements (like H1, A, etc.). These come with default styling from the browser so we can redefine them here.
 @import "elements";
 
 
-// OBJECTS - abstractions
+// OBJECTS - class-based selectors which define undecorated design patterns, for example media object known from OOCSS
 @import "objects";
 
 
-// COMPONENTS - particular component theming
+// COMPONENTS - specific UI components. This is where majority of our work takes place and our UI components are often composed of Objects and Components
 @import "libraries/anim-hamburger/setup";
 <% if( props.npm.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
 @import "layouts";
 @import "components";
 
 
-// UTILITIES - do one thing, and one thing only classes
+// UTILITIES - utilities and helper classes with ability to override anything which goes before in the triangle, eg. hide helper class
 @import "utilities";

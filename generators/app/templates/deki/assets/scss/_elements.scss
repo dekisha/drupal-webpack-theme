@@ -122,6 +122,14 @@ input[type="image"] {
   padding: 0;
 }
 
+figure {
+   > figcaption {
+    border-bottom: 1px solid #e8edf2;
+    color: #666666;
+    padding: gutter-span();
+  }
+}
+
 input[type="radio"],
 input[type="checkbox"] {
   // margin: 5px;

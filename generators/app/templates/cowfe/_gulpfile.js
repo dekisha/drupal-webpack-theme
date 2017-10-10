@@ -1,5 +1,4 @@
 //VARIABLES
-
 var gulp = require('gulp'),
   gp_sass = require('gulp-sass'),
   gp_sourcemaps = require('gulp-sourcemaps'),
@@ -109,7 +108,7 @@ gulp.task('watch', function() {
 
 gulp.task('w' ,['browser-sync'] , function() {
   // gulp.watch(scssfiles, ['styles']);
-  gulp.watch('assets/**/**.scss', ['styles']);
+  gulp.watch(sassWatcher, ['styles']);
   gulp.watch(jsfiles, ['scripts']);
   gp_livereload.listen();
   gulp.watch('*.html').on('change', browserSync.reload);

@@ -131,7 +131,136 @@
 // ----------------------------------------------------------------------------
 // FORMS
 // ----------------------------------------------------------------------------
+.form-type-textfield,
+.form-type-password,
+.form-type-email {
+  label {
+    display: block;
+  }
+}
 
+.form-item input.error,
+.form-item textarea.error,
+.form-item select.error {
+  border: 1px solid #c62828;
+}
+
+.form-type-checkbox {
+  position: relative;
+  .form-checkbox {
+    margin-right: 8px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: 18px;
+     + label {
+      position: relative;
+      &::before {
+        background-image: svg("v.svg", "[fill]: #fff");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 10px;
+        border: 1px solid #cccccc;
+        border-radius: $radius;
+        content: "";
+        display: inline-block;
+        height: 18px;
+        left: -28px;
+        position: absolute;
+        top: 0;
+        width: 18px;
+      }
+    }
+    &:checked + label {
+      &::before {
+        background-image: svg("v.svg", "[fill]: #{$color-blue}");
+        border-color: $color-blue;
+        transition: $transition-time;
+      }
+    }
+  }
+}
+
+.form-type-radio {
+  position: relative;
+  .form-radio {
+    margin-right: 8px;
+    opacity: 0;
+    overflow: hidden;
+    position: relative;
+    width: 18px;
+     + label {
+      position: relative;
+      &::before {
+        background-image: svg("circle.svg", "[fill]: #fff");
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 10px;
+        border: 1px solid #cccccc;
+        border-radius: 50%;
+        content: "";
+        display: inline-block;
+        height: 18px;
+        left: -28px;
+        position: absolute;
+        top: 0;
+        width: 18px;
+      }
+    }
+    &:checked + label {
+      &::before {
+        background-image: svg("circle.svg", "[fill]: #{$color-blue}");
+        border-color: $color-blue;
+        transition: $transition-time;
+      }
+    }
+  }
+}
+
+.form--inline {
+  @include clearfix;
+  .form-item {
+    display: inline-block;
+    float: none;
+    margin: 0;
+    vertical-align: top;
+  }
+  .form-actions {
+    clear: none;
+    display: inline-block;
+    margin: 0;
+    vertical-align: top;
+  }
+}
+
+// ----------------------------------------------------------------------------
+// HAMBURGER
+// ----------------------------------------------------------------------------
+.c-hamburger {
+  position: relative;
+  size: 46px;
+
+  @include breakpoint($m) {
+    display: none;
+  }
+  span {
+    background-color: $color-green;
+    height: 4px;
+    top: 50%;
+    transform: translateY(-50%);
+    &:before,
+    &:after {
+      background-color: $color-green;
+      height: 4px;
+    }
+    &:before {
+      top: -9px;
+    }
+    &:after {
+      bottom: -9px;
+    }
+  }
+}
 
 // ----------------------------------------------------------------------------
 // LOGO
@@ -166,6 +295,7 @@
 // ----------------------------------------------------------------------------
 // SOCIAL MEDIA LINKS
 // ---------------------------------------------------------------------------- 
+
 
 // ----------------------------------------------------------------------------
 // SLICK SLIDER
