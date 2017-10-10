@@ -1,16 +1,244 @@
-*,
-:after,
-:before {
+html {
   box-sizing: border-box;
+  overflow-y: scroll;
+}
+
+* {
+  &,
+  &:before,
+  &:after {
+    box-sizing: inherit;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
+  color: $color-dark;
   font-family: $font-default;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+p,
+pre,
+dl,
+dd,
+ol,
+ul,
+figure,
+hr,
+fieldset,
+legend {
+  margin: 0;
+  padding: 0;
+}
+
+address,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+p,
+pre,
+dl,
+ol,
+ul,
+figure,
+hr,
+table,
+fieldset {
+  margin-bottom: gutter-span();
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+
+  @include breakpoint($m) {
+    font-size: 46px;
+  }
+}
+
+dd,
+ol,
+ul {
+  margin-left: gutter-span();
+}
+
+li {
+  // margin-bottom: gutter-span() / 2;
+  // margin-left: gutter-span();
+}
+
+li >  {
+  ol,
+  ul {
+    margin-bottom: 0;
+    // margin-top: gutter-span() / 2;
+  }
+}
+
+fieldset {
+  border: 0;
+  min-width: 0;
 }
 
 a {
+  color: inherit;
   text-decoration: none;
   &:hover {
     text-decoration: underline;
   }
 }
+
+img {
+  height: auto;
+  max-width: 100%;
+  vertical-align: middle;
+}
+
+input[type="image"] {
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  box-sizing: content-box;
+  color: inherit;
+  padding: 0;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  // margin: 5px;
+   + label {
+    vertical-align: middle;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select,
+textarea,
+fieldset {
+  background-color: #ffffff;
+  border: 1px solid #cccccc;
+  border-radius: $radius-form;
+  font-family: inherit;
+  font-size: inherit;
+  max-width: 100%;
+  outline: none;
+  padding: 1em;
+  &:focus {
+    background-color: #ffffdd;
+    border-color: #aaaaaa;
+    transition: transition-time;
+  }
+  &:disabled {
+    background-color: #f3f3f3;
+  }
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea {
+  &::placeholder {
+    color: $color-grey-darker;
+    opacity: 1;
+  }
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+select {
+  padding: 0.25em 0.5em 0.25em;
+}
+
+fieldset {
+  background-color: transparent;
+  max-width: 100%;
+  min-width: 150px;
+  width: 100%;
+}
+
+table {
+  background: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
+  thead,
+  tbody {
+    border: none;
+  }
+  tr,
+  tr.odd,
+  tr.even {
+    background-color: transparent;
+    border-bottom: 1px solid #dedede;
+    border-top: 1px solid #dedede;
+  }
+  th,
+  td {
+    border: none;
+    padding: 0.25em 0;
+    &.active {
+      background-color: transparent;
+    }
+  }
+  th + th,
+  td + td {
+    padding-left: 1em;
+  }
+}
+
+blockquote {
+  border: 6px solid;
+  color: $color-green;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: gutter-span() * 2;
+  margin-top: gutter-span() * 2;
+  padding: 35px;
+   > p {
+    margin-top: 0;
+    padding-left: 12px;
+    position: relative;
+    &:last-child {
+      margin-bottom: 0;
+    }
+    &:before {
+      content: "\201C";
+      left: 0;
+      position: absolute;
+    }
+    &:after {
+      content: "\201D";
+    }
+  }
+}
+
+// div:empty {
+//   border: 1px solid red;
+//   padding: 20px;
+//   &:before {
+//     content: "I am an empty element, plase remove me!"
+//   }
+// }

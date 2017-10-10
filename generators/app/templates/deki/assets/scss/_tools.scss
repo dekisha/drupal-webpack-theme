@@ -1,18 +1,129 @@
 // ----------------------------------------------------------------------------
-// Mixins
+// GRID
+// ---------------------------------------------------------------------------- 
+@include add-grid(12);
+@include add-gutter(20px);
+@include add-gutter-style("split");
+@include sgs-change("debug", $debug);
+
 // ----------------------------------------------------------------------------
+// MIXINS
+// ----------------------------------------------------------------------------
+@mixin gutter-fix {
+  margin-left: - gutter-span() / 2;
+  margin-right: - gutter-span() / 2;
+}
+
 @mixin clearfix {
   &::after {
     clear: both;
-    content: '';
+    content: "";
     display: table;
   }
 }
 
-// ----------------------------------------------------------------------------
-// GRID
-// ---------------------------------------------------------------------------- 
-@include add-grid(12);
-@include add-gutter(1/4);
-@include add-gutter-style("split");
-@include sgs-change('debug', $debug);
+@mixin hidden-visually {
+  border: 0 !important;
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  white-space: nowrap !important;
+  width: 1px !important;
+}
+
+@mixin o-wrapper {
+  @include clearfix;
+  padding-right: gutter-span();
+  padding-left:  gutter-span();
+  margin-right: auto;
+  margin-left:  auto;
+  max-width: $wrapper-width;
+}
+
+@mixin o-wrapper--medium {
+  @include clearfix;
+  padding-right: gutter-span();
+  padding-left:  gutter-span();
+  margin-right: auto;
+  margin-left:  auto;
+  max-width: $wrapper-width-medium;
+}
+
+@mixin o-wrapper--small {
+  @include clearfix;
+  padding-right: gutter-span();
+  padding-left:  gutter-span();
+  margin-right: auto;
+  margin-left:  auto;
+  max-width: $wrapper-width-small;
+}
+
+@mixin pseudo-bg($color: $color-grey-lightest) {
+  position: relative;
+  &:before {
+    background-color: $color;
+    content: "";
+    display: block;
+    height: 100%;
+    left: 50%;
+    position: absolute;
+    top: 0;
+    transform: translateX(-50%);
+    width: 100vw;
+    z-index: -1;
+  }
+}
+
+@mixin c-btn {
+  border-radius: $radius-btn;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 700;
+  padding: 1em 2em;
+  text-align: center;
+  transition: $transition-time;
+  vertical-align: middle;
+  &,
+  &:hover,
+  &:active,
+  &:focus {
+    text-decoration: none;
+  }
+}
+
+@mixin c-btn--primary {
+  background-color: $color-green;
+  border: 2px solid $color-green;
+  color: white;
+  font-size: 14px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    background-color: white;
+    color: $color-green;
+  }
+}
+
+@mixin c-btn--secondary {
+  background-color: white;
+  border: 2px solid white;
+  color: $color-green;
+  font-size: 14px;
+  text-transform: uppercase;
+  &:hover,
+  &:focus {
+    opacity: 0.8;
+  }
+}
+
+// hide element initially only if js is enabled 
+@mixin nojs-fix {
+  display: none;
+  .no-js & {
+    display: block;
+  }
+}

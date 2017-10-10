@@ -3,6 +3,8 @@
   "title": "<%= props.projectName %>",
   "version": "<%= props.version %>",
   "description": "Theme built by Coworks team. Runs with gulp",
+  "repository": "git@git.coworks.be:theDexter/yo-cowfe.git",
+  "license": "MIT",
   "authors": [
     {
       "name": "Dejan Dudukovic(dexterns88)"
@@ -31,7 +33,8 @@
     "postcss-font-awesome": "^0.3.3",
     "postcss-inline-svg": "^3.0.0",
     "postcss-position": "^1.0.0",
-    "postcss-size": "^2.0.0"<%
+    "postcss-size": "^2.0.0",
+    "postcss-svg": "^1.0.5"<%
 
   if (props.npm.singularity){%>,
     "singularitygs": "^1.7.0"<%
@@ -43,5 +46,8 @@
   },
   "scripts": {
     "postinstall": "find node_modules/ -name \"*.info\" -type f -delete"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
   }
 }

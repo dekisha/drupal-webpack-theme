@@ -1,17 +1,132 @@
 // ----------------------------------------------------------------------------
 // BLOCKS
 // ----------------------------------------------------------------------------
-
+.block-region {
+  background-color: rgba(0, 0, 0, 0.1);
+}
 
 // ----------------------------------------------------------------------------
 // BREADCRUMBS
 // ----------------------------------------------------------------------------
-
+.breadcrumb {
+  padding: 10px 0;
+  li {
+    color: $color-green;
+    font-weight: 700;
+    &:before {
+      background-image: svg("angle-left.svg", "[fill]: #{$color-green}");
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: 10px;
+      content: "";
+      display: inline-block;
+      size: 10px;
+    }
+    &:first-child:before {
+      content: "";
+    }
+  }
+  a {
+    color: inherit;
+    font-weight: 400;
+  }
+}
 
 // ----------------------------------------------------------------------------
 // BUTTONS
 // ----------------------------------------------------------------------------
+.c-btn--primary__wrapper {
+  a {
+    @include c-btn;
+    @include c-btn--primary;
+  }
+}
 
+.form-submit {
+  @include c-btn;
+  @include c-btn--primary;
+}
+
+.c-btn {
+  @include c-btn;
+}
+
+.c-btn--primary {
+  @include c-btn--primary;
+}
+
+.c-btn--secondary {
+  @include c-btn--secondary;
+}
+
+.button {
+  @include c-btn;
+  @include c-btn--primary;
+}
+
+.btn-link {
+  @include c-btn;
+  @include c-btn--primary;
+}
+
+.c-btn--full {
+  width: 100%;
+}
+
+.is-disabled {
+  cursor: default !important;
+  opacity: 0.5 !important;
+  pointer-events: none !important;
+}
+
+// ----------------------------------------------------------------------------
+// DEBUG
+// ----------------------------------------------------------------------------
+@if $debug {
+  body {
+    &:after {
+      bottom: 0;
+      color: white;
+      display: block;
+      font-size: 12px;
+      font-weight: 400;
+      left: 0;
+      padding: 0.3em 0.5em;
+      position: fixed;
+      text-align: center;
+      z-index: 3;
+
+      @include breakpoint($xs) {
+        background: red;
+        content: "XS";
+      }
+      @include breakpoint($s) {
+        background: orange;
+        content: "S";
+      }
+      @include breakpoint($m) {
+        background: gold;
+        content: "M";
+      }
+      @include breakpoint($l) {
+        background: green;
+        content: "L";
+      }
+      @include breakpoint($xl) {
+        background: blue;
+        content: "XL";
+      }
+      @include breakpoint($xxl) {
+        background: purple;
+        content: "XXL";
+      }
+      @include breakpoint($xxxl) {
+        background: indigo;
+        content: "XXXL";
+      }
+    }
+  }
+}
 
 // ----------------------------------------------------------------------------
 // FORMS
@@ -52,11 +167,57 @@
 // SOCIAL MEDIA LINKS
 // ---------------------------------------------------------------------------- 
 
+// ----------------------------------------------------------------------------
+// SLICK SLIDER
+// ---------------------------------------------------------------------------- 
+// prevent content jump before JS init
+.js-slick-slider {
+   > .field__item:not(:first-child) {
+    display: none;
+  }
+}
+
+.slick-initialized .slick-slide {
+  display: block !important;
+}
 
 // ----------------------------------------------------------------------------
 // TABS
 // ----------------------------------------------------------------------------
+[id="block-m2q-local-tasks"] {
+}
 
+ul.tabs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.tabs > li {
+  display: inline-block;
+  margin-right: 0.3em; /* LTR */
+}
+
+[dir="rtl"] .tabs > li {
+  margin-left: 0.3em;
+  margin-right: 0;
+}
+
+.tabs a {
+  background-color: initial;
+  box-shadow: inset 0 -0.2em 0 0 rgba(0, 0, 0, 0.4);
+  color: $color-dark;
+  display: block;
+  padding: 0.5em 1em;
+  text-decoration: none;
+}
+
+.tabs a:focus,
+.tabs a:hover,
+.tabs a.is-active {
+  box-shadow: inset 0 -0.2em 0 0 $color-dark;
+  transition: $transition-time;
+}
 
 // ----------------------------------------------------------------------------
 // VIEWS

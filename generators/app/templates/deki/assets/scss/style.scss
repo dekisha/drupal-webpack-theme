@@ -4,7 +4,6 @@
 
 // TOOLS - mixins
 @import "node_modules/breakpoint-sass/stylesheets/_breakpoint";
-<% if( props.npm.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
 <% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>
 @import "tools";
 
@@ -22,7 +21,8 @@
 
 
 // COMPONENTS - particular component theming
-// @import "libraries/anim-hamburger/setup";
+@import "libraries/anim-hamburger/setup";
+<% if( props.npm.slick ) { %>@import 'node_modules/slick-carousel/slick/slick.scss';<% } %>
 @import "layouts";
 @import "components";
 

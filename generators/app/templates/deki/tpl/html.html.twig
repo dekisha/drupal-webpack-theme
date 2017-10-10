@@ -7,7 +7,8 @@ set body_classes = [
   page.sidebar_first ? 'has-sidebar-first',
   page.sidebar_second ? 'has-sidebar-second',
   page.sidebar_first and page.sidebar_second ? 'has-both-sidebars',
-  not page.sidebar_first or page.sidebar_second ? 'has-no-sidebars'
+  not page.sidebar_first and not page.sidebar_second ? 'has-no-sidebars',
+  'no-js'
 ]
 %}
 
@@ -19,9 +20,20 @@ set body_classes = [
     <title>{{ head_title|safe_join(' | ') }}</title>
     <css-placeholder token="{{ placeholder_token|raw }}">
     <js-placeholder token="{{ placeholder_token|raw }}">
-      <link href="https://fonts.googleapis.com/css?family=Asap:400,400i,500,500i,700,700i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,700" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="180x180" href="/themes/cowfe/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/themes/cowfe/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/themes/cowfe/favicons/favicon-16x16.png">
+    <link rel="manifest" href="/themes/cowfe/favicons/manifest.json">
+    <link rel="mask-icon" href="/themes/cowfe/favicons/safari-pinned-tab.svg" color="#0063ac">
+    <link rel="shortcut icon" href="/themes/cowfe/favicons/favicon.ico">
+    <meta name="msapplication-config" content="/themes/cowfe/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
   </head>
   <body{{ attributes.addClass(body_classes) }}>
+    <script>
+      document.body.className = document.body.className.replace("no-js", "");
+    </script>
     <a href="#main-content" class="visually-hidden focusable">
       {{ 'Skip to main content'|t }}
     </a>

@@ -11,17 +11,18 @@
   <header class="l-header" id="header" role="banner">
     <div class="o-wrapper">
       {{ page.header }}
-      {{ page.navigation }}
     </div>
   </header>
+  
+  <div class="l-navigation">
+    {{ page.navigation }}
+  </div>
 
   <a id="main-content" tabindex="-1"></a>{# link is in html.html.twig #}
 
   {% if page.highlighted %}
     <div class="l-highlighted">
-      <div class="o-wrapper">
-        {{ page.highlighted }}
-      </div>
+      {{ page.highlighted }}
     </div>
   {% endif %}
 
@@ -34,34 +35,34 @@
   {% endif %}
   
   <main class="l-main" role="main">
-    <div class="o-wrapper">
-      <div class="o-layout">
-        
-        <div class="l-content">
-          {{ page.help }}
-          {{ page.content }}
-        </div>{# /.l-content #}
-        
-        {% if page.sidebar_first %}
-        <div class="l-sidebar-first">
-          {{ page.sidebar_first }}
-        </div>{# /.l-sidebar-first #}
-        {% endif %}
-        
-        {% if page.sidebar_second %}
-          <div class="l-sidebar-second">
-            {{ page.sidebar_second }}
-          </div>{# /.l-sidebar-second #}
-        {% endif %}
-        
-      </div>{# /.o-layout #}
-    </div>{# /.o-wrapper #}
+    <div class="l-main__inner">
+      
+      <div class="l-content">
+        {{ page.help }}
+        {{ page.content }}
+      </div>{# /.l-content #}
+      
+      {% if page.sidebar_first %}
+      <div class="l-sidebar-first">
+        {{ page.sidebar_first }}
+      </div>{# /.l-sidebar-first #}
+      {% endif %}
+      
+      {% if page.sidebar_second %}
+      <div class="l-sidebar-second">
+        {{ page.sidebar_second }}
+      </div>{# /.l-sidebar-second #}
+      {% endif %}
+      
+    </div>{# /.l-main__inner #}
   </main>{# /.l-main #}
   
   {% if page.post_content %}
-  <div class="l-post-content">
-    {{ page.post_content }}
-  </div>
+    <div class="l-post-content">
+      <div class="o-wrapper">
+        {{ page.post_content }}
+      </div>
+    </div>
   {% endif %}
 
   {% if page.footer %}

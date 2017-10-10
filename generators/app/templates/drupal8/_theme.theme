@@ -36,3 +36,12 @@ function <%= props.projectSlug %>_preprocess_region(&$vars) {
     $vars['region_class']['sidebar_second'] = $sidebar_second_class;
   }
 }
+
+function <%= props.projectSlug %>_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    if (isset($node) && is_object($node)) {
+      $content_type = $node->bundle();
+      $suggestions[] = 'page__'.$content_type;
+    }
+  }
+}

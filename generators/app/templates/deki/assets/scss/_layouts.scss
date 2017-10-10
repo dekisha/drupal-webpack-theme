@@ -1,4 +1,10 @@
 // ----------------------------------------------------------------------------
+// CONTAINER
+// ----------------------------------------------------------------------------
+.l-container {
+}
+
+// ----------------------------------------------------------------------------
 // TOP
 // ----------------------------------------------------------------------------
 .l-top {
@@ -19,7 +25,16 @@
 // ----------------------------------------------------------------------------
 // NAVIGATION
 // ----------------------------------------------------------------------------
+.region-navigation {
+  display: none;
+  position: absolute;
+  width: 100%;
+  z-index: 501; // to go over contextual links
 
+  @include breakpoint($m) {
+    display: none !important;
+  }
+}
 
 // ----------------------------------------------------------------------------
 // HELP
@@ -37,43 +52,103 @@
 .l-pre-content {
 }
 
+.region-pre-content {
+}
+
 // ----------------------------------------------------------------------------
 // MAIN
 // ----------------------------------------------------------------------------
+.l-main {
+  flex: 1 0 auto;
+  padding-bottom: 100px;
+  padding-top: 60px;
+  width: 100%;
 
+  @include o-wrapper;
+  .page-node-type-product &,
+  .page-node-type-banner & {
+    max-width: none;
+    padding: 0;
+  }
+  .page-node-type-service-page &,
+  .page-node-type-blog-post & {
+    @include o-wrapper--small;
+  }
+}
+
+.l-main__inner {
+  .has-sidebar-first &,
+  .has-sidebar-second & {
+    @include breakpoint($m) {
+      @include gutter-fix();
+    }
+  }
+}
 
 // ----------------------------------------------------------------------------
 // CONTENT
 // ----------------------------------------------------------------------------
 .l-content {
+  position: relative;
   .has-sidebar-first & {
-    @include grid-span(9, 4);
+    @include breakpoint($m) {
+      @include grid-span(9, 4);
+    }
+  }
+  .has-sidebar-second & {
+    @include breakpoint($m) {
+      @include grid-span(9, 1);
+    }
+  }
+  .has-both-sidebars & {
+    @include breakpoint($m) {
+      @include grid-span(6, 4);
+    }
   }
 }
 
 // ----------------------------------------------------------------------------
 // POST CONTENT
 // ----------------------------------------------------------------------------
+.l-post-content {
+}
 
+.region-post-content {
+}
 
 // ----------------------------------------------------------------------------
 // SIDEBAR FIRST
 // ----------------------------------------------------------------------------
 .l-sidebar-first {
-  @include grid-span(3, 1);
+  @include breakpoint($m) {
+    @include grid-span(3, 1);
+  }
+}
+
+.region-sidebar-second {
 }
 
 // ----------------------------------------------------------------------------
 // SIDEBAR SECOND
 // ----------------------------------------------------------------------------
 .l-sidebar-second {
-  @include grid-span(3, 9);
+  @include breakpoint($m) {
+    @include grid-span(3, 10);
+  }
+}
+
+.region-sidebar-first {
+  @include breakpoint($m) {
+  }
 }
 
 // ----------------------------------------------------------------------------
 // FOOTER
 // ----------------------------------------------------------------------------
 .l-footer {
+}
+
+.region-footer {
 }
 
 // ----------------------------------------------------------------------------

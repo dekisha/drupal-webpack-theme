@@ -5,7 +5,7 @@
     attach: function (context, settings) {
 
       $('body', context).once('sampleDrupal8').each(function() {
-        alert("It 's working remove sample from file in: assets/js/scripts.js");
+        alert("If it's working please remove sample from file in: assets/js/scripts.js");
       });
     }
   };

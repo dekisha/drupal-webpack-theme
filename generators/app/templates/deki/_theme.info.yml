@@ -11,24 +11,23 @@ regions:
   top: Top
   header: Header
   navigation: Navigation
-  help: Help
   highlighted: Highlighted
-  featured: Featured
   pre_content: Pre-content
+  help: Help
   content: Content
-  post_content: Post-content
   sidebar_first: Sidebar first
   sidebar_second: Sidebar second
+  post_content: Post-content
   footer: Footer
   bottom: Bottom
 
 libraries:
   - '<%= props.projectSlug %>/global'
-  
+
 libraries-override:
   classy/base:
     css:
       component:
-        css/components/links.css: false
-        css/components/menu.css: false
-        css/components/tabs.css: false
+        # css/components/links.css: false
+        # css/components/menu.css: false
+        # css/components/tabs.css: false
