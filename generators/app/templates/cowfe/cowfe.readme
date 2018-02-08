@@ -1,0 +1,46 @@
+/*
+| Cowfe readme how to
+|
+*/
+
+1. Setup
+========================================
+$ npm install
+
+
+2. Compiling
+========================================
+// compile for development
+$ gulp watch
+    or
+$ gulp w
+
+// compile for production
+$ gulp
+
+
+3. How to
+========================================
+
+- Libraries
+ include libraries like slick, bootstrap, uikit and modify it throw variable sass in this folder
+ exampel for bootstrap:
+   - into libraries make folder bootstrap put all bootstrap file or if it's from node module go to next step
+   - set _bootstrap.inc.scss into libraries root to include bootstrap and into that include your variable
+
+- Utils ( global includer non style file like )
+  ( !!!! Do not define any element style here, this file is included in every site style )
+  - mixing
+  - variables
+  - extend
+  - .....
+
+- debug ( only for development, development helper )
+  this file will not be compiled in production mode
+
+- base.scss
+  this file is called into base libraries from drupal and will be loaded before module style
+
+- layout similar as base but it's for layout
+
+- themes will be loaded at end of drupal style load and it's for site theme

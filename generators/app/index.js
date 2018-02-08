@@ -267,6 +267,12 @@ module.exports = class extends Generator {
       );
     } else {
       // Dexter installer
+      this.fs.copyTpl(
+        this.templatePath('cowfe/assets/scss/libraries/_libraries.scss'),
+        this.destinationPath(this.props.scss + '/libraries/_libraries.scss'),
+        {props: this.props}
+      );
+
       this.fs.copy(
         this.templatePath('cowfe/assets/scss/utils/_utils.scss'),
         this.destinationPath(this.props.scss + '/utils/_utils.scss')
@@ -294,10 +300,9 @@ module.exports = class extends Generator {
         this.destinationPath(this.props.scss + '/_debug.scss')
       );
 
-      this.fs.copyTpl(
+      this.fs.copy(
         this.templatePath('cowfe/assets/scss/theme.scss'),
-        this.destinationPath(this.props.scss + '/theme.scss'),
-        {props: this.props}
+        this.destinationPath(this.props.scss + '/theme.scss')
       );
 
       this.fs.copy(
@@ -316,6 +321,11 @@ module.exports = class extends Generator {
       this.templatePath('cowfe/_gulpfile.js'),
       this.destinationPath('gulpfile.js'),
       {props: this.props}
+    );
+
+    this.fs.copy(
+      this.templatePath('cowfe/cowfe.readme'),
+      this.destinationPath('cowfe.readme')
     );
 
     // Copy screenshots

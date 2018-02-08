@@ -1,9 +1,8 @@
-# generator-cowfe [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+# generator-cowfe ( Drupal 8 )
 > Yeoman Drupal theme generator for cowfe theme from coworks
 
-Generator version: 1.0.1
-
-Theme version: 1.0.0
+Generator version: 2.0.0
+Theme version: 2.0.0
 
 ```
           .=     ,        =.
@@ -64,6 +63,11 @@ yo cowfe
 MIT © [dejan dudukovic]()
 
 # Change logs
+#### Version: 2.0.0
+- Added new style structure adapted for Drupal 8 libraries system
+- Removed unused module version
+- Removed support for Drupal 7
+
 #### Version: 1.0.1
 
 - Added dekisha Drupal 8 theme structure
