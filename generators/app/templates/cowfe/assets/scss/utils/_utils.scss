@@ -1,11 +1,8 @@
 // ----------------------------------------------------------------------------
-// Mixins
+// Utils scss
+// Define utility which will be included on every file
 // ----------------------------------------------------------------------------
 
-@mixin clearfix {
-  &::after {
-    clear: both;
-    content: '';
-    display: table;
-  }
-}
+@import "variables";
+@import "glob";
+@import "mixins";

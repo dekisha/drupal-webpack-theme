@@ -14,6 +14,7 @@ var gulp = require('gulp'),
   gp_livereload = require('gulp-livereload'),
   gp_header = require('gulp-header'),
   postcss_svg = require('postcss-svg'),
+  gp_sassGlob = require('gulp-sass-glob'),
   processors = [
     autoprefixer({
       browsers: ['last 5 versions', 'IE 9', 'IE 10'],

@@ -8,7 +8,7 @@ $debug: false !default;
 // check if debug
 @if $debug == true {
 
-  @include sgs-change('debug', true);
+  //@include sgs-change('debug', true);
 
   :root {
     padding-bottom: 20px;

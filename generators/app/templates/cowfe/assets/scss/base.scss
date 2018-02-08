@@ -1,0 +1,49 @@
+// ----------------------------------------------------------------------------
+// Base style
+// Where is defined some basic style like heading paragraphs links
+// !!! @NOTE Without any specific class ( do not use specific class for styling here this is base ) !!!
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+// @cm Custom imports
+// ----------------------------------------------------------------------------
+@import "utils/utils";
+
+// ----------------------------------------------------------------------------
+// @cm Styles
+// ----------------------------------------------------------------------------
+* {
+  box-sizing: border-box;
+}
+
+:root {
+  font-size: 10px;
+}
+
+body {
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+// -----------------------------
+// @cm Typography
+// -----------------------------
+h1 {
+  font-size: 3.2rem;
+}
+
+h2 {
+  font-size: 3.0rem;
+}
+
+h3 {
+  font-size: 2.8rem;
+}
+
+h4 {
+  font-size: 2.6rem;
+}
+
+h5 {
+  font-size: 2.4rem;
+}

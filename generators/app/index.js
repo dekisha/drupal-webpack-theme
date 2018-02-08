@@ -4,7 +4,7 @@ const chalk = require('chalk');
 const yosay = require('yosay');
 const _s = require('underscore.string');
 const mkdirp = require('mkdirp');
-const themeV = '1.0.0';
+const themeV = '2.0.0';
 
 module.exports = class extends Generator {
   prompting() {
@@ -12,7 +12,7 @@ module.exports = class extends Generator {
     this.log(yosay('Yeoman Coworks.be builder \n Welcome to the Drupal Cowfe theme generator! \n For issue call the doctor'));
     this.log(
       chalk.green(
-        'With this you can create the scaffolding for your own Drupal theme. \n'
+        'With this you can create the scaffolding for your own Drupal 8 theme. \n'
       )
     );
 
@@ -24,7 +24,6 @@ module.exports = class extends Generator {
       {name: 'No Base Theme', value: null},
       {name: 'stable (D8)', value: 'stable'},
       {name: 'classy (D8)', value: 'classy'},
-      {name: 'garland (d7)', value: 'garland'},
       {name: 'bartik', value: 'bartik'},
       {name: 'engines', value: 'engines'},
       {name: 'seven', value: 'seven'},
@@ -33,8 +32,7 @@ module.exports = class extends Generator {
 
     // List of drupal version
     const drupalVersionList = [
-      {name: 'Drupal 8', value: 8},
-      {name: 'Drupal 7', value: 7}
+      {name: 'Drupal 8', value: 8}
     ];
 
     const prompts = [
@@ -121,6 +119,7 @@ module.exports = class extends Generator {
     mkdirp.sync(this.props.imgDir);
     mkdirp.sync(this.props.favIcoDir);
 
+    // @NOTE For feature drupal version
     if (this.props.drupalV === 8) {
       // Drupal 8 theme build
 
@@ -214,34 +213,6 @@ module.exports = class extends Generator {
           this.destinationPath(this.props.templateDir + '/regions/region--sidebar-second.html.twig')
         );
       }
-    } else if (this.props.drupalV === 7) {
-      // Drupal 7 theme build
-
-      this.fs.copyTpl(
-        this.templatePath('drupal7/_template.php'),
-        this.destinationPath('template.php')
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('drupal7/_theme.info'),
-        this.destinationPath(this.props.projectSlug + '.info'),
-        {props: this.props}
-      );
-
-      this.fs.copy(
-        this.templatePath('drupal7/tpl/html.tpl.php'),
-        this.destinationPath(this.props.templateDir + '/html.tpl.php')
-      );
-
-      this.fs.copy(
-        this.templatePath('drupal7/tpl/page.tpl.php'),
-        this.destinationPath(this.props.templateDir + '/page.tpl.php')
-      );
-
-      this.fs.copy(
-        this.templatePath('drupal7/tpl/maintenance-page.tpl.php'),
-        this.destinationPath(this.props.templateDir + '/maintenance-page.tpl.php')
-      );
     }
 
     // General theme files.
@@ -295,14 +266,27 @@ module.exports = class extends Generator {
         this.destinationPath(this.props.scss + '/_components.scss')
       );
     } else {
+      // Dexter installer
       this.fs.copy(
-        this.templatePath('cowfe/assets/scss/_mixins.scss'),
-        this.destinationPath(this.props.scss + '/_mixins.scss')
+        this.templatePath('cowfe/assets/scss/utils/_utils.scss'),
+        this.destinationPath(this.props.scss + '/utils/_utils.scss')
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('cowfe/assets/scss/utils/_glob.scss'),
+        this.destinationPath(this.props.scss + '/utils/_glob.scss'),
+        {props: this.props}
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('cowfe/assets/scss/utils/_mixins.scss'),
+        this.destinationPath(this.props.scss + '/utils/_mixins.scss'),
+        {props: this.props}
       );
 
       this.fs.copy(
-        this.templatePath('cowfe/assets/scss/_variables.scss'),
-        this.destinationPath(this.props.scss + '/_variables.scss')
+        this.templatePath('cowfe/assets/scss/utils/_variables.scss'),
+        this.destinationPath(this.props.scss + '/utils/_variables.scss')
       );
 
       this.fs.copy(
@@ -311,12 +295,21 @@ module.exports = class extends Generator {
       );
 
       this.fs.copyTpl(
-        this.templatePath('cowfe/assets/scss/style.scss'),
-        this.destinationPath(this.props.scss + '/style.scss'),
+        this.templatePath('cowfe/assets/scss/theme.scss'),
+        this.destinationPath(this.props.scss + '/theme.scss'),
         {props: this.props}
       );
-    }
 
+      this.fs.copy(
+        this.templatePath('cowfe/assets/scss/base.scss'),
+        this.destinationPath(this.props.scss + '/base.scss'),
+      );
+
+      this.fs.copy(
+        this.templatePath('cowfe/assets/scss/layout.scss'),
+        this.destinationPath(this.props.scss + '/layout.scss'),
+      );
+    }
 
     // Gulp file
     this.fs.copyTpl(

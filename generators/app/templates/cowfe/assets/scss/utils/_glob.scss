@@ -1,0 +1,6 @@
+
+// ----------------------------------------------------------------------------
+// Global importer and mixing importer
+// ----------------------------------------------------------------------------
+@import 'node_modules/breakpoint-sass/stylesheets/breakpoint.scss';
+<% if( props.npm.singularity ) { %>@import 'node_modules/singularitygs/stylesheets/singularitygs.scss';<% } %>

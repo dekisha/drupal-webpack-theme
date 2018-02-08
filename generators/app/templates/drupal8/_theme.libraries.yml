@@ -1,8 +1,12 @@
 global:
   version: 1.x
   css:
+    base:
+      css/base.css: {}
+    layout:
+      css/layout.css: {}
     theme:
-      css/style.css: {}
+      css/theme.css: {}
 #      css/print.css: { media: print }
   js:
     js/scripts.js: {}
@@ -14,3 +18,11 @@ global:
     - core/drupal.debounce
 #    - 'core/jquery.ui'
 #    - 'core/jquery.ui.slider'  # include ui slider library
+
+#uikit:
+#  css:
+#    base:
+#      assets/css/uikit.css: {}
+#  js:
+#    assets/js/uikit.js: {}
+#    assets/js/uikit-icons.js: {}
