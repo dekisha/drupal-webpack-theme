@@ -1,7 +1,7 @@
 # generator-cowfe ( Drupal 8 )
 > Yeoman Drupal theme generator for cowfe theme from coworks
 
-Generator version: 2.0.0
+Generator version: 2.0.0  
 Theme version: 2.0.0
 
 ```
